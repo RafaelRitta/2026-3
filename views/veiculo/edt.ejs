@@ -1,0 +1,25 @@
+<%-include('../cabecalho.ejs')%>
+    <h1>Editar Veiculo</h1>
+    <div>
+        <a href="/veiculo/lst">Listar</a>
+    </div>
+    <div>
+        <form method="post" enctype="multipart/form-data"></form>
+
+            <input type="hidden" name="id" value="<%=Veiculo.id%>"><br>
+            <label>Marca:</label>
+            <input type="text" name="marca" value="<%=Veiculo.marca%>"><br>
+            <label>Modelo:</label>
+            <input type="text" name="modelo" value="<%=Veiculo.modelo%>"><br>
+            <label>Ano:</label>
+            <input type="text" name="ano" value="<%=Veiculo.ano%>"><br>
+            <label>Preço por dia:</label>
+            <input type="text" name="precopordia" value="<%=Veiculo.precopordia%>"><br>
+            <label>Foto:</label>
+            <input type="file" name="foto" value="<%=Veiculo.foto%>"><br>
+            <button type="submit">Cadastrar</button>
+
+        </form>
+    </div>
+
+    <%-include('../rodape.ejs')%></br>

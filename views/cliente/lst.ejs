@@ -1,0 +1,40 @@
+<%-include('../cabecalho.ejs')%>
+    <h1>Clientes</h1>
+    <div>
+        <form action="
+        " method="post">
+            <input type="text" name="filtro" id="" placeholder="digite o nome">
+            <button type="submit">Pesquisar</button>
+        </form>
+    </div>
+    <a href="/cliente/add">+ Cliente</a>
+    <table>
+        <tr>
+            <td>Nome</td>
+            <td>Número</td>
+            <td>CPF</td>
+            <td>CNH</td>
+            <td>Ações</td>
+        </tr>
+
+        <%for (const {id, nome, numero, cpf, cnh} of Clientes) {%>
+            <tr>
+                <td>
+                    <%=nome%>
+                </td>
+                <td>
+                    <%=numero%>
+                </td>
+                <td>
+                    <%=cpf%>
+                </td>
+                <td>
+                    <%=cnh%>
+                </td>
+                <td><a href="/cliente/edt/<%=id%>">Editar</a>
+                    <a href="/cliente/del/<%=id%>">Excluir</a>
+                </td>
+            </tr>
+            <%}%>
+    </table>
+    <%-include('../rodape.ejs')%>

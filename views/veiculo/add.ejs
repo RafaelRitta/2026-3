@@ -1,0 +1,23 @@
+<%-include('../cabecalho.ejs')%>
+    <h1>Adicionar Veiculo</h1>
+    <div>
+        <a href="/veiculo/lst">Listar</a>
+    </div>
+    <div>
+        <form method="post" enctype="multipart/form-data"></form>
+            <label>Marca:</label>
+            <input type="text" name="marca"><br>
+            <label>Modelo:</label>
+            <input type="text" name="modelo"><br>
+            <label>Ano:</label>
+            <input type="number" name="ano"><br>
+            <label>Preço por dia:</label>
+            <input type="number" name="precopordia"><br>
+            <label>Foto:</label>
+            <input type="file" name="foto"><br>
+            <button type="submit">Cadastrar</button>
+
+        </form>
+    </div>
+
+    <%-include('../rodape.ejs')%>

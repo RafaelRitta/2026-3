@@ -1,0 +1,28 @@
+<%-include('../cabecalho.ejs')%>
+    <h1>Veiculos</h1>
+    <a href="/veiculo/add">+ Veiculo</a>
+    <table>
+        <tr>
+            <td>Marca</td>
+            <td>Modelo</td>
+            <td>Ano</td>
+            <td>Preço por dia</td>
+            <td>Imagem</td>
+            <td>Ações</td>
+        </tr>
+      
+        <%for (const {id, marca, modelo, ano, precopordia, foto} of Veiculos) {%>
+        <tr>
+            <td><%=marca%></td>
+            <td><%=modelo%></td>
+            <td><%=ano%></td>
+            <td><%=precopordia%></td>
+            <td><img src="<%=foto%>" width="150" height="150"></td>
+            <td>
+                <a href="/veiculo/edt/<%=id%>">Editar</a>
+                <a href="/veiculo/del/<%=id%>">Excluir</a>
+            </td>
+        </tr>
+        <%}%>
+    </table>
+ <%-include('../rodape.ejs')%>

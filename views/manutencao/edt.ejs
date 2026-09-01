@@ -1,0 +1,23 @@
+<%-include('../cabecalho.ejs')%>
+    <h1>Editar Manutencao</h1>
+    <div>
+        <a href="/manutencao/lst">Listar</a>
+    </div>
+    <div>
+        <form method="post">
+
+            <input type="hidden" name="id" value="<%=Manutencao.id%>"><br>
+            <label>Oficina:</label>
+            <input type="text" name="oficina" value="<%=Manutencao.oficina%>"><br>
+            <label>Valor:</label>
+            <input type="text" name="valor" value="<%=Manutencao.valor%>"><br>
+            <label>Data:</label>
+            <input type="text" name="data" value="<%=Manutencao.data%>"><br>
+            <label>Veículo:</label>
+            <input type="text" name="veiculo" value="<%=Manutencao.veiculo%>"><br>
+            <button type="submit">Cadastrar</button>
+
+        </form>
+    </div>
+
+    <%-include('../rodape.ejs')%>
