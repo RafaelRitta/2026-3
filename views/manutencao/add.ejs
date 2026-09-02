@@ -1,7 +1,7 @@
 <%-include('../cabecalho.ejs')%>
     <h1>Adicionar Cliente</h1>
     <div>
-        <a href="/cliente/lst">Listar</a>
+        <a href="/manutencao/lst">Listar</a>
     </div>
     <div>
         <form method="post">
@@ -10,7 +10,7 @@
             <label>Valor:</label>
             <input type="number" name="valor"><br>
             <label>Data:</label>
-            <input type="date" name="data"><br>
+            <input type="datetime-local" name="data"><br>
             <label>Veículo:</label>
             <input type="text" name="veiculo"><br>
             <button type="submit">Cadastrar</button>

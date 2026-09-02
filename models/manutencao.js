@@ -1,4 +1,3 @@
-import { ref } from 'node:process'
 import conexao from '../config/conexao.js'
 
 const Manutencao = conexao.Schema({
