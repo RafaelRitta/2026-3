@@ -11,8 +11,17 @@
             <input type="number" name="valor"><br>
             <label>Data:</label>
             <input type="datetime-local" name="data"><br>
-            <label>Veículo:</label>
-            <input type="text" name="veiculo"><br>
+            <div class="mb-3">
+                <label for="veiculo" class="form-label">Veiculo</label>
+                <select name="veiculo" id="veiculo" class="form-control">
+                <option value="">selecione</option>
+                <%Veiculos.forEach(function(veiculo){%>
+                <option value='<%=veiculo.id%>'>
+                <%=veiculo.nome%>
+                </option>
+                <%})%>
+                </select>
+            </div>
             <button type="submit">Cadastrar</button>
 
         </form>

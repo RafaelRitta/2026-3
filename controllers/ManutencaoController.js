@@ -8,15 +8,25 @@ export default class ManutencaoController{
     
         this.openAdd = async(req, res)=>{
             res.render(caminhoBase + "add")
+
+            const a = await Veiculo.find({})
+
+            res.render(caminhoBase + "add", ({Veiculo: a}))
         }
         this.add = async(req, res)=>{
             //cria o Manutencao
            
+            let jveiculo = null;
+            // Se vier seleção de time, busca o objeto
+            if(req.body.veiculo != null) {
+                jveiculo = await Veiculo.findById(req.body.veiculo)
+            }
+
             await Manutencao.create({
                 oficina: req.body.oficina,
                 valor:req.body.valor,
                 data:req.body.data,
-                veiculo:req.body.veiculo
+                veiculo:jveiculo
             });
             res.redirect('/'+caminhoBase + 'add');
         }
