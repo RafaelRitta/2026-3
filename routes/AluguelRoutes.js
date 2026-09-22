@@ -1,10 +1,10 @@
 import express from 'express';
 const router = express.Router();
-//Busca o ManutencaoController
-import ManutencaoController from '../controllers/ManutencaoController.js'
-const controle = new ManutencaoController();
+//Busca o AluguelController
+import AluguelController from '../controllers/AluguelController.js'
+const controle = new AluguelController();
 
-const caminhobase = 'manutencao/'
+const caminhobase = 'aluguel/'
 
 router.get('/' + caminhobase + 'add', controle.openAdd)
 router.post('/' + caminhobase + 'add', controle.add)

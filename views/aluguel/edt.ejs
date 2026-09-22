@@ -1,0 +1,39 @@
+<%-include('../cabecalho.ejs')%>
+    <h1>Editar Aluguel</h1>
+    <div>
+        <a href="/aluguel/lst">Listar</a>
+    </div>
+    <div>
+        <form method="post">
+
+            <div class="mb-3">
+                <label for="cliente" class="form-label">Cliente</label>
+                <select name="cliente" id="cliente" class="form-control">
+                <option value="">selecione</option>
+                <%Cliente.forEach(function(cliente){%>
+                <option value='<%=cliente.id%>'>
+                <%=cliente.nome%>
+                </option>
+                <%})%>
+                </select>
+            </div>
+            <label>Valor:</label>
+            <input type="text" name="valor" value="<%=Aluguel.valor%>"><br>
+            <label>Data:</label>
+            <input type="datetime-local" name="data" value="<%=Aluguel.data%>"><br>
+            <div class="mb-3">
+                <label for="veiculo" class="form-label">Veiculo</label>
+                <select name="veiculo" id="veiculo" class="form-control">
+                <option value="">selecione</option>
+                <%Veiculo.forEach(function(veiculo){%>
+                <option value='<%=veiculo.id%>'>
+                <%=veiculo.modelo%>
+                </option>
+                <%})%>
+                </select>
+            <button type="submit">Cadastrar</button>
+
+        </form>
+    </div>
+
+    <%-include('../rodape.ejs')%>

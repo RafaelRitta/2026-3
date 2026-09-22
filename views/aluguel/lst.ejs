@@ -1,5 +1,5 @@
 <%-include('../cabecalho.ejs')%>
-    <h1>Manutencaos</h1>
+    <h1>Aluguels</h1>
     <div>
         <form action="
         " method="post">
@@ -7,20 +7,20 @@
             <button type="submit">Pesquisar</button>
         </form>
     </div>
-    <a href="/manutencao/add">+ Manutencao</a>
+    <a href="/aluguel/add">+ Aluguel</a>
     <table>
         <tr>
-            <td>Oficina</td>
+            <td>Cliente</td>
             <td>Valor</td>
             <td>Data</td>
             <td>Veículo</td>
             <td>Ações</td>
         </tr>
 
-        <%for (const {id, oficina, valor, data, veiculo} of Manutencaos) {%>
+        <%for (const {id, cliente, valor, data, veiculo} of Aluguels) {%>
             <tr>
                 <td>
-                    <%=oficina%>
+                    <%=cliente%>
                 </td>
                 <td>
                     <%=valor%>
@@ -31,8 +31,8 @@
                 <td>
                     <%=veiculo%>
                 </td>
-                <td><a href="/manutencao/edt/<%=id%>">Editar</a>
-                    <a href="/manutencao/del/<%=id%>">Excluir</a>
+                <td><a href="/aluguel/edt/<%=id%>">Editar</a>
+                    <a href="/aluguel/del/<%=id%>">Excluir</a>
                 </td>
             </tr>
             <%}%>

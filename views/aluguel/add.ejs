@@ -1,12 +1,21 @@
 <%-include('../cabecalho.ejs')%>
-    <h1>Adicionar Cliente</h1>
+    <h1>Alugar</h1>
     <div>
-        <a href="/manutencao/lst">Listar</a>
+        <a href="/aluguel/lst">Listar</a>
     </div>
     <div>
         <form method="post">
-            <label>Oficina:</label>
-            <input type="text" name="oficina"><br>
+            <div class="mb-3">
+                <label for="cliente" class="form-label">Cliente</label>
+                <select name="cliente" id="cliente" class="form-control">
+                <option value="">selecione</option>
+                <%Cliente.forEach(function(cliente){%>
+                <option value='<%=cliente.nome%>'>
+                <%=cliente.id%>
+                </option>
+                <%})%>
+                </select>
+            </div>
             <label>Valor:</label>
             <input type="number" name="valor"><br>
             <label>Data:</label>
@@ -15,9 +24,9 @@
                 <label for="veiculo" class="form-label">Veiculo</label>
                 <select name="veiculo" id="veiculo" class="form-control">
                 <option value="">selecione</option>
-                <%Veiculos.forEach(function(veiculo){%>
-                <option value='<%=veiculo.id%>'>
-                <%=veiculo.nome%>
+                <%Veiculo.forEach(function(veiculo){%>
+                <option value='<%=veiculo.modelo%>'>
+                <%=veiculo.id%>
                 </option>
                 <%})%>
                 </select>
