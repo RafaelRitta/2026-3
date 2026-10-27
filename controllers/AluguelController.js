@@ -1,9 +1,6 @@
-//importar o Model
 import Aluguel from '../models/aluguel.js'
 import Veiculo from '../models/veiculo.js'
 import Cliente from '../models/cliente.js'
-
-
 
 export default class AluguelController{
 
@@ -11,16 +8,12 @@ export default class AluguelController{
         this.caminhoBase = caminhoBase
     
         this.openAdd = async(req, res)=>{
-            
-
             const a = await Veiculo.find({})
             const b = await Cliente.find({})
 
             res.render(caminhoBase + "add", {Veiculo: a, Cliente: b})
         }
         this.add = async(req, res)=>{
-            //cria o Aluguel
-
             await Aluguel.create({
                 cliente:req.body.cliente,
                 valor:req.body.valor,
@@ -41,29 +34,25 @@ export default class AluguelController{
             res.render(caminhoBase + 'lst', {Aluguels:resultado})
         }
 
-     
-
-         this.openEdt = async(req, res)=>{
-            //passar quem eu quero editar
+        this.openEdt = async(req, res)=>{
             const id = req.params.id
             console.log(id)
             const aluguel = await Aluguel.findById(id) 
             console.log(aluguel)
+            const a = await Veiculo.find({})
+            const b = await Cliente.find({})
             res.render(caminhoBase + "edt", 
-                {Aluguel:aluguel})
+                {Aluguel:aluguel, Veiculo:a, Cliente:b})
         }
-
 
         this.edt = async(req, res)=>{
-        await Aluguel.findByIdAndUpdate(req.params.id, req.body)
-        res.redirect('/'+caminhoBase + 'lst');
-        
+            await Aluguel.findByIdAndUpdate(req.params.id, req.body)
+            res.redirect('/'+caminhoBase + 'lst');
         }
 
-         this.del = async(req, res)=>{
-        await Aluguel.findByIdAndDelete(req.params.id)
-        res.redirect('/'+caminhoBase + 'lst');
-        
+        this.del = async(req, res)=>{
+            await Aluguel.findByIdAndDelete(req.params.id)
+            res.redirect('/'+caminhoBase + 'lst');
         }
 
     }
