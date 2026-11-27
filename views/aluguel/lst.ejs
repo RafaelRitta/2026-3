@@ -1,8 +1,7 @@
 <%-include('../cabecalho.ejs')%>
     <h1>Aluguels</h1>
     <div>
-        <form action="
-        " method="post">
+        <form action="" method="post">
             <input type="text" name="filtro" id="" placeholder="digite o nome">
             <button type="submit">Pesquisar</button>
         </form>
@@ -20,21 +19,22 @@
         <%for (const {id, cliente, valor, data, veiculo} of Aluguels) {%>
             <tr>
                 <td>
-                    <%=cliente%>
+                    <%= cliente ? cliente.nome : 'Cliente removido' %>
                 </td>
                 <td>
-                    <%=valor%>
+                    R$ <%= Number(valor).toFixed(2).replace('.', ',') %>
                 </td>
                 <td>
-                    <%=data%>
+                    <%= new Date(data).toLocaleDateString('pt-BR', { timeZone: 'UTC' }) %>
                 </td>
                 <td>
-                    <%=veiculo%>
+                    <%= veiculo ? `${veiculo.marca} ${veiculo.modelo}` : 'Veículo removido' %>
                 </td>
-                <td><a href="/aluguel/edt/<%=id%>">Editar</a>
+                <td>
+                    <a href="/aluguel/edt/<%=id%>">Editar</a>
                     <a href="/aluguel/del/<%=id%>">Excluir</a>
                 </td>
             </tr>
-            <%}%>
+        <%}%>
     </table>
-    <%-include('../rodape.ejs')%>
+<%-include('../rodape.ejs')%>

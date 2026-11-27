@@ -2,58 +2,66 @@ import Aluguel from '../models/aluguel.js'
 import Veiculo from '../models/veiculo.js'
 import Cliente from '../models/cliente.js'
 
-export default class AluguelController{
+export default class AluguelController {
 
-    constructor(caminhoBase='aluguel/'){
+    constructor(caminhoBase = 'aluguel/') {
         this.caminhoBase = caminhoBase
-    
-        this.openAdd = async(req, res)=>{
+
+        this.openAdd = async (req, res) => {
             const a = await Veiculo.find({})
             const b = await Cliente.find({})
-
-            res.render(caminhoBase + "add", {Veiculo: a, Cliente: b})
+            res.render(caminhoBase + "add", { Veiculo: a, Cliente: b })
         }
-        this.add = async(req, res)=>{
+
+        this.add = async (req, res) => {
             await Aluguel.create({
-                cliente:req.body.cliente,
-                valor:req.body.valor,
-                data:req.body.data,
-                veiculo:req.body.veiculo
+                cliente: req.body.cliente,
+                valor: req.body.valor,
+                data: req.body.data,
+                veiculo: req.body.veiculo
             });
-            res.redirect('/'+caminhoBase + 'add');
-        }
-        this.list = async(req, res)=>{
-            const resultado = await Aluguel.find({})
-            res.render(caminhoBase + 'lst', {Aluguels:resultado})
-        }
-        this.find = async(req, res)=>{
-            const filtro = req.body.filtro;
-            const resultado = await 
-            Aluguel.find({ nome: { $regex: filtro,
-                $options: "i" }})
-            res.render(caminhoBase + 'lst', {Aluguels:resultado})
+            res.redirect('/' + caminhoBase + 'add');
         }
 
-        this.openEdt = async(req, res)=>{
+        this.list = async (req, res) => {
+            const resultado = await Aluguel.find({})
+                .populate('cliente')
+                .populate('veiculo')
+            res.render(caminhoBase + 'lst', { Aluguels: resultado })
+        }
+
+        this.find = async (req, res) => {
+            const filtro = req.body.filtro;
+            const clientes = await Cliente.find({
+                nome: { $regex: filtro, $options: "i" }
+            });
+            const idsClientes = clientes.map(c => c._id);
+
+            const resultado = await Aluguel.find({
+                cliente: { $in: idsClientes }
+            })
+                .populate('cliente')
+                .populate('veiculo');
+
+            res.render(caminhoBase + 'lst', { Aluguels: resultado })
+        }
+
+        this.openEdt = async (req, res) => {
             const id = req.params.id
-            console.log(id)
-            const aluguel = await Aluguel.findById(id) 
-            console.log(aluguel)
+            const aluguel = await Aluguel.findById(id)
             const a = await Veiculo.find({})
             const b = await Cliente.find({})
-            res.render(caminhoBase + "edt", 
-                {Aluguel:aluguel, Veiculo:a, Cliente:b})
+            res.render(caminhoBase + "edt", { Aluguel: aluguel, Veiculo: a, Cliente: b })
         }
 
-        this.edt = async(req, res)=>{
+        this.edt = async (req, res) => {
             await Aluguel.findByIdAndUpdate(req.params.id, req.body)
-            res.redirect('/'+caminhoBase + 'lst');
+            res.redirect('/' + caminhoBase + 'lst');
         }
 
-        this.del = async(req, res)=>{
+        this.del = async (req, res) => {
             await Aluguel.findByIdAndDelete(req.params.id)
-            res.redirect('/'+caminhoBase + 'lst');
+            res.redirect('/' + caminhoBase + 'lst');
         }
-
     }
 }
